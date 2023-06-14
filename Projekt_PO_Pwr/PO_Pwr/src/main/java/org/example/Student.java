@@ -10,6 +10,12 @@ public class Student extends Object{
         this.strength = genStrength();
         this.motivation = genMotivation();
     }
+    public Student(Student s)
+    {
+        intelligence = s.intelligence;
+        strength = s.strength;
+        motivation = s.motivation;
+    }
     public  int genIntelligence(){
         Random liczba = new Random();
         return intelligence = liczba.nextInt(11) +10;

@@ -1,12 +1,13 @@
 package org.example;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class Cell {
     int ID;
-    public boolean isBuff(){if(buff instanceof Buff.NULL){return true;} return false;}
-    public boolean isStudent(){if(student instanceof Student.NULL){return true;} return false;}
+    public boolean isBuff(){if(buff instanceof Buff.NULL){return false;} return true;}
+    public boolean isStudent(){if(student instanceof Student.NULL){return false;} return true;}
     private Student student;
     private Buff buff;
     private Student getStudent()
@@ -14,9 +15,9 @@ public class Cell {
         return this.student;
     }
     public char getSign(){
-        if(isStudent())
+        if(!isStudent())
         {
-            if(isBuff())
+            if(!isBuff())
                 return ' ';
             else
             {
@@ -35,9 +36,7 @@ public class Cell {
         return ID;
     }
     private void copyStudent(Student x){
-        student.setIntelligence(x.getStatIntelligence());
-        student.setMotivation(x.getStatMotivation());
-        student.setStrength(x.getStatStrength());
+        this.student=new Student(x);
     }
     public void fight(Cell x)
     {
@@ -59,9 +58,18 @@ public class Cell {
         this.student = new Student();
     }
     public void upgradeStudent(){
-        if(this.buff instanceof Buff.Library){}
-        else if(this.buff instanceof Buff.Gym){}
-        else{}
+        if(this.buff instanceof Buff.Library){
+            student.setIntelligence(getStudent().getStatIntelligence() + ((Buff.Library) this.buff).buff());
+            student.setMotivation(getStudent().getStatMotivation() + ((Buff.Library) this.buff).deBuff());
+        }
+        else if(this.buff instanceof Buff.Gym){
+            student.setStrength(getStudent().getStatStrength() + ((Buff.Gym) this.buff).buff());
+            student.setMotivation(getStudent().getStatMotivation() + ((Buff.Gym) this.buff).deBuff());
+        }
+        else{
+            student.setMotivation(getStudent().getStatMotivation() + ((Buff.Party) this.buff).buff());
+            student.setIntelligence(getStudent().genIntelligence() + ((Buff.Party) this.buff).deBuff());
+        }
         removeBuff();
     }
     public void moveStudent(Cell x){
