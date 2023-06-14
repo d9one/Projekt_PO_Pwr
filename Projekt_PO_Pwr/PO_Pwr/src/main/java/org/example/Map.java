@@ -30,7 +30,7 @@ public class Map {
     }
     public static void end() throws IOException
     {
-        output.close();
+        System.out.close();
     }
     private void initializeCells() {
         for (int i = 0; i < WIDTH; i++) {
@@ -68,18 +68,18 @@ public class Map {
         for(int x=0;x<HEIGHT;x++)
         {
             String s = String.format("%2d:|", x+1);
-            output.write(s);
+            System.out.print(s);
             for(int y=0;y<WIDTH;y++)
             {
-                output.write(cells[x][y].getSign());
+                System.out.print(cells[x][y].getSign());
             }
-            output.write("|\n");
+            System.out.print("|\n");
         }
         for(int i =0;i<WIDTH+5;i++)
         {
-            output.write("-");
+            System.out.print("-");
         }
-        output.write("\n");
+        System.out.print("\n");
     }
     public void generateBuffs(){
         for(int i=0;i<BuffCount;i++)
@@ -104,6 +104,7 @@ public class Map {
                 if(isInRange(x+xMove, y+yMove)) {
                     if(cells[x+xMove][y+yMove].isStudent())
                     {
+                        cells[x+xMove][y+yMove].fight(cells[x][y]);
                         cells[x][y].removeStudent();
                         Holder.add((x+xMove)*WIDTH+y+yMove);
                     }

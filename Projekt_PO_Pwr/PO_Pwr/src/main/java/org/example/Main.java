@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Map map = new Map(10, 10);
         map.generateBuffs();
-        for(int i=0;i<10;i++)
+        for(int i=0;i<100;i++)
         {
             map.moveStudents();
             map.GraphicMap();

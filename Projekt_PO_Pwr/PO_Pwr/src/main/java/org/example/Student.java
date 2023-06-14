@@ -5,6 +5,7 @@ public class Student extends Object{
     private int intelligence;
     private int strength;
     private int motivation;
+
     public Student(){
         this.intelligence = genIntelligence();
         this.strength = genStrength();
