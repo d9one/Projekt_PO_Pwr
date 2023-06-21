@@ -60,16 +60,16 @@ public class Cell {
     }
     public void upgradeStudent(){
         if(this.buff instanceof Buff.Library){
-            student.setIntelligence(getStudent().getStatIntelligence() + ((Buff.Library) this.buff).buff());
-            student.setMotivation(getStudent().getStatMotivation() + ((Buff.Library) this.buff).deBuff());
+            student.setIntelligence(getStudent().getStatIntelligence() + Buff.buff());
+            student.setMotivation(getStudent().getStatMotivation() + Buff.deBuff());
         }
         else if(this.buff instanceof Buff.Gym){
-            student.setStrength(getStudent().getStatStrength() + ((Buff.Gym) this.buff).buff());
-            student.setMotivation(getStudent().getStatMotivation() + ((Buff.Gym) this.buff).deBuff());
+            student.setStrength(getStudent().getStatStrength() + Buff.buff());
+            student.setMotivation(getStudent().getStatMotivation() + Buff.deBuff());
         }
         else{
-            student.setMotivation(getStudent().getStatMotivation() + ((Buff.Party) this.buff).buff());
-            student.setIntelligence(getStudent().genIntelligence() + ((Buff.Party) this.buff).deBuff());
+            student.setMotivation(getStudent().getStatMotivation() + Buff.buff());
+            student.setIntelligence(getStudent().genIntelligence() + Buff.deBuff());
         }
         removeBuff();
     }
