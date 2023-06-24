@@ -11,10 +11,19 @@ import java.util.Scanner;
 
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        Map map = new Map(10, 10);
+    public static void main(String[] args) throws IOException, InterruptedException {
+        System.out.println("podaj wysokosc mapy");
+        Scanner scx = new Scanner(System.in);
+        int x = scx.nextInt();
+        System.out.println("podaj szerokosc mapy");
+        Scanner scy = new Scanner(System.in);
+        int y = scy.nextInt();
+        Map map = new Map(x, y);
         map.generateBuffs();
-        for(int i=0;i<100;i++)
+        System.out.println("podaj dlugosc semestru");
+        Scanner sctime = new Scanner(System.in);
+        int time = sctime.nextInt();
+        for(int i=0;i<time;i++)
         {
             map.moveStudents();
             map.GraphicMap();

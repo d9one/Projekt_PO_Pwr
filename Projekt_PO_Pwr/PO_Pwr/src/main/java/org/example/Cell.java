@@ -59,17 +59,8 @@ public class Cell {
         this.student = new Student();
     }
     public void upgradeStudent(){
-        if(this.buff instanceof Buff.Library){
-            student.setIntelligence(getStudent().getStatIntelligence() + Buff.buff());
-            student.setMotivation(getStudent().getStatMotivation() + Buff.deBuff());
-        }
-        else if(this.buff instanceof Buff.Gym){
-            student.setStrength(getStudent().getStatStrength() + Buff.buff());
-            student.setMotivation(getStudent().getStatMotivation() + Buff.deBuff());
-        }
-        else{
-            student.setMotivation(getStudent().getStatMotivation() + Buff.buff());
-            student.setIntelligence(getStudent().genIntelligence() + Buff.deBuff());
+        if(this.buff != null){
+            Buff.modify(getStudent());
         }
         removeBuff();
     }

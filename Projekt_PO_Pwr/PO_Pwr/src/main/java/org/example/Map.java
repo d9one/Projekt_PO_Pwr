@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Random;
 import java.lang.invoke.WrongMethodTypeException;
 
+import static java.lang.Thread.sleep;
+
 
 public class Map {
     static File f;
@@ -15,7 +17,7 @@ public class Map {
     private static int WIDTH;
     private static int HEIGHT;
     final static int BuffCount=10;
-    final static int StudentCount = 20;
+    final static int StudentCount = 50;
     private static Cell[][] cells;
     private ArrayList<Integer> list;
 
@@ -28,7 +30,7 @@ public class Map {
         f = new File("out.txt");
         output = new FileWriter(f);
     }
-    public static void end() throws IOException
+    public static void end()
     {
         System.out.close();
     }
@@ -51,10 +53,6 @@ public class Map {
                     list.add(x*WIDTH+y);
                 }
             }
-            /*cells[1][2].genStudent();
-            cells[4][4].genStudent();
-            list.add((1*WIDTH+2));
-            list.add(4*WIDTH+4);*/
         }
         else
             throw new WrongMethodTypeException();
@@ -64,7 +62,7 @@ public class Map {
         return x >=0 && x <WIDTH && y >=0 && y <HEIGHT;
     }
 
-    public static void GraphicMap() throws IOException {
+    public static void GraphicMap() throws InterruptedException {
         for(int x=0;x<HEIGHT;x++)
         {
             String s = String.format("%2d:|", x+1);
@@ -75,11 +73,10 @@ public class Map {
             }
             System.out.print("|\n");
         }
-        for(int i =0;i<WIDTH+5;i++)
-        {
-            System.out.print("-");
+        sleep(500);
+        for (int k=0;k<50;k++){
+            System.out.println();
         }
-        System.out.print("\n");
     }
     public void generateBuffs(){
         for(int i=0;i<BuffCount;i++)
